@@ -58,7 +58,7 @@ qtype_data = {
         'orient': 'V'
     },
     'QTYPE_INT4': {
-        'vals': [1,2,3,0],
+        'vals': [1, 2, 3, 0],
         'orient': 'V'
     },
     'QTYPE_MCQ4': {
@@ -118,7 +118,7 @@ class Template():
             marker = cv2.imread(self.marker_path, cv2.IMREAD_GRAYSCALE)
             if("SheetToMarkerWidthRatio" in markerOps):
                 marker = utils.resize_util(marker, config.uniform_width /
-                                     int(markerOps["SheetToMarkerWidthRatio"]))
+                                           int(markerOps["SheetToMarkerWidthRatio"]))
             marker = cv2.GaussianBlur(marker, (5, 5), 0)
             marker = cv2.normalize(
                 marker,
@@ -130,13 +130,12 @@ class Template():
             self.marker = marker - \
                 cv2.erode(marker, kernel=np.ones((5, 5)), iterations=5)
 
-
         # Add QBlocks
         for name, block in json_obj["QBlocks"].items():
             self.addQBlocks(name, block)
 
-
     # Expects bubbleDims to be set already
+
     def addQBlocks(self, key, rect):
         assert(self.bubbleDims != [-1, -1])
         # For qType defined in QBlocks
