@@ -9,8 +9,8 @@ import cv2
 import os
 import json
 import numpy as np
-import config
-import utils
+import app.config
+import app.utils
 
 ### Coordinates Part ###
 
@@ -84,8 +84,8 @@ qtype_data = {
 
 class Template():
     def __init__(self, path):
-        with open(path, "r") as f:
-            json_obj = json.load(f)
+
+        json_obj = json.loads(path)
         self.path = path
         self.QBlocks = []
         # throw exception on key not exist
